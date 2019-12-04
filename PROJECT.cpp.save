@@ -1,0 +1,336 @@
+    #include "TXlib.h"
+    void kvadriba (int x, int y, int xco, int yco, int xct, int yct, int xk, int yk, int xwo, int ywo, int xwt, int ywt);
+    int main()
+    {
+    txCreateWindow(1000, 800);
+    txSetColor(TX_WHITE);
+    txClear();
+    txSetColor(TX_BLACK);
+    COLORREF background = RGB(151, 151, 151);
+    txSetFillColor(background);
+    txSetColor(background);
+    txRectangle(0, 0, 800, 800);
+    bool stop = FALSE;
+    bool riba = TRUE;
+    int x = 0;
+    int y = 0;
+    int xco = 200;
+    int yco = 200;
+    int xct = 200;
+    int yct = 200;
+    int xk = 200;
+    int yk = 210;
+    int xwo = 200;
+    int ywo = 200;
+    int xwt = 100;
+    int ywt = 300;
+    while(1==1)
+    {
+    kvadriba (x, y, xco, yco, xct, yct, xk, yk, xwo, ywo, xwt, ywt);
+    if ((x+300<=txMouseX()) and (x+500>=txMouseX()) and (y+700<=txMouseY()) and (y+750>=txMouseY()))
+        {
+        txSetFillColor(TX_WHITE);
+        txSetColor(TX_BLACK);
+        txRectangle(txMouseX(), txMouseY(), txMouseX()+200, txMouseY()+50);
+        txTextOut(txMouseX()+10, txMouseY()+18, " ‚‡‰Ë·‡ Ì‡ ‡Á‚Â‰ÍÂ");
+        }
+    txSleep(100);
+    txSetColor(TX_WHITE);
+    txClear();
+    txSetColor(TX_BLACK);
+    txSetFillColor(background);
+    txSetColor(background);
+    txRectangle(0, 0, 800, 800);
+    txSetFillColor(TX_WHITE);
+    txSetColor(TX_WHITE);
+    txRectangle(800, 0, 1000, 1000);
+    if (stop==FALSE)
+        {
+
+        xco = xco-5;
+        xct = xct-5;
+        xwo = xwo-5;
+        xwt = xwt-5;
+        if (xco==60)
+            {
+            xco = 550;
+            }
+        if (xct==-150)
+            {
+            xct = 320;
+            }
+        if (yk==190)
+            {
+            riba = FALSE;
+            }
+        if (yk==210)
+            {
+            riba = TRUE;
+            }
+        if (riba==TRUE)
+            {
+            yk = yk-2;
+            }
+        else
+            {
+            yk = yk+2;
+            }
+        if (xwo==-120)
+            {
+            xwo = 430;
+            }
+        if (xwt==-130)
+            {
+            xwt = 400;
+            }
+        }
+    else
+        {
+        if ((820<=txMouseX()) and (980>=txMouseX()) and (320<=txMouseY()) and (480>=txMouseY()))
+            {
+            txSetColor(TX_BLACK);
+            txSetFillColor(TX_GRAY);
+            txRectangle(820, 320, 980, 480);
+            txSetFillColor(TX_WHITE);
+            POINT start[3]={{860, 360}, {860, 440}, {940, 400}};
+            txPolygon(start, 3);
+            if (txMouseButtons() & 1)
+                {
+                stop = FALSE;
+                }
+            }
+        else
+            {
+            txSetColor(TX_BLACK);
+            txSetFillColor(TX_WHITE);
+            txRectangle(820, 320, 980, 480);
+            txSetFillColor(TX_GRAY);
+            POINT start[3]={{860, 360}, {860, 440}, {940, 400}};
+            txPolygon(start, 3);
+            }
+        }
+    }
+
+    return 0;
+    }
+
+    void kvadriba (int x, int y, int xco, int yco, int xct, int yct, int xk, int yk, int xwo, int ywo, int xwt, int ywt)
+    {
+    COLORREF frame = RGB(249, 223, 17);
+    txSetFillColor(frame);
+    txSetColor(frame);
+    txRectangle(100, 100, 700, 700);
+    COLORREF sky = RGB(123, 195, 241);
+    txSetFillColor(sky);
+    txSetColor(sky);
+    txRectangle(200, 200, 600, 600);
+
+    //SquareFish
+
+    COLORREF riba = RGB(250, 69, 36);
+
+    POINT tale[4]={{xk+125, yk+140}, {xk+150, yk+185}, {xk+150, yk+215},
+    {xk+125, yk+260}};
+
+    txSetFillColor(riba);
+    txSetColor(TX_BLACK);
+    txPolygon(tale, 4);
+    txRectangle(xk+150, yk+170, xk+275, yk+230);
+
+    txSetFillColor(TX_BLACK);
+    txCircle(xk+263, yk+185, 3);
+
+    //Sea
+
+    COLORREF sea = RGB(6, 113, 211);
+    txSetFillColor(sea);
+    txSetColor(sea);
+    txRectangle(200, 400, 600, 600);
+
+    //Wave one
+    COLORREF wave = RGB(104, 158, 226);
+    txSetColor(wave, 3);
+
+    txLine(xwo+180, ywo+240, xwo+205, ywo+230);
+    txLine(xwo+205, ywo+230, xwo+225, ywo+245);
+    txLine(xwo+225, ywo+245, xwo+240, ywo+245);
+    txLine(xwo+240, ywo+245, xwo+260, ywo+230);
+    txLine(xwo+260, ywo+230, xwo+275, ywo+230);
+    txLine(xwo+275, ywo+230, xwo+300, ywo+240);
+    txLine(xwo+300, ywo+240, xwo+320, ywo+233);
+
+    //Wave two
+
+    txLine(xwt+180, ywt+240, xwt+205, ywt+230);
+    txLine(xwt+205, ywt+230, xwt+225, ywt+245);
+    txLine(xwt+225, ywt+245, xwt+240, ywt+245);
+    txLine(xwt+240, ywt+245, xwt+260, ywt+230);
+    txLine(xwt+260, ywt+230, xwt+275, ywt+230);
+    txLine(xwt+275, ywt+230, xwt+300, ywt+240);
+    txLine(xwt+300, ywt+240, xwt+320, ywt+233);
+
+    //Clouds
+
+    POINT cloud_one[18]={{xco+45, yco+50}, {xco+40, yco+40}, {xco+65, yco+30},
+    {xco+70, yco+25}, {xco+77, yco+28}, {xco+100, yco+25}, {xco+120, yco+30}, {xco+140, yco+28},
+    {xco+138, yco+50}, {xco+140, yco+60}, {xco+125, yco+75}, {xco+125, yco+85}, {xco+90, yco+80},
+    {xco+85, yco+95}, {xco+70, yco+95}, {xco+60, yco+75}, {xco+40, yco+75}, {xco+37, yco+60}};
+
+    POINT cloud_two[18]={{xct+280, yct+100}, {xct+270, yct+100}, {xct+270, yct+90},
+    {xct+275, yct+80}, {xct+278, yct+80}, {xct+280, yct+65}, {xct+310, yct+70}, {xct+310, yct+68},
+    {xct+320, yct+68}, {xct+325, yct+75}, {xct+340, yct+75}, {xct+333, yct+95}, {xct+350, yct+100},
+    {xct+350, yct+110}, {xct+325, yct+115}, {xct+320, yct+125}, {xct+300, yct+118}, {xct+280, yct+120}};
+
+    txSetFillColor(TX_WHITE);
+    txSetColor(TX_BLACK, 3);
+    txPolygon(cloud_one, 18);
+    txPolygon(cloud_two, 18);
+
+    txSetFillColor(frame);
+    txSetColor(frame);
+
+    txRectangle(100, 100, 200, 700);
+    txRectangle(600, 700, 700, 100);
+
+    txSetColor(TX_BLACK);
+
+    COLORREF background = RGB(151, 151, 151);
+    txSetFillColor(background);
+    txSetColor(background);
+    txRectangle(0, 0, 100, 800);
+    txRectangle(700, 0, 800, 800);
+
+    //Fish leftup
+    POINT riba_leftup[14]={{150, 150}, {125, 140}, {100, 125},
+    {x+125, y+125}, {x+140, y+100}, {x+145, y+125}, {x+150, y+150}, {x+145, y+160},
+    {x+160, y+180}, {x+180, y+200}, {x+200, y+200}, {x+200, y+180}, {x+180, y+160},
+    {x+160, y+150}};
+    txSetFillColor(riba);
+    txPolygon (riba_leftup, 14);
+    txSetFillColor(TX_BLACK);
+    txCircle(x+190, y+185, 3);
+
+    //Fish rightup
+    POINT riba_rightup[14]={{650, 150}, {655, 125}, {660, 100},
+    {x+675, y+125}, {x+700, y+125}, {x+675, y+140}, {x+650, y+150}, {x+640, y+150},
+    {x+615, y+170}, {x+600, y+190}, {x+600, y+200}, {x+620, y+200}, {x+655, y+170},
+    {x+655, y+150}};
+    txSetFillColor(riba);
+    txPolygon (riba_rightup, 14);
+    txSetFillColor(TX_BLACK);
+    txCircle(x+613, y+183, 3);
+
+    //Fish leftdown
+    POINT riba_leftdown[12]={{150, 650}, {140, 650}, {100, 675},
+    {x+125, y+675}, {x+140, y+700}, {x+150, y+650}, {x+165, y+650}, {x+200, y+610},
+    {x+200, y+600}, {x+180, y+600}, {x+145, y+630}, {x+145, y+650}};
+    txSetFillColor(riba);
+    txPolygon (riba_leftdown, 12);
+    txSetFillColor(TX_BLACK);
+    txCircle(x+185, y+610, 3);
+
+    //Fish rightdown
+    POINT riba_rightdown[12]={{650, 650}, {660, 650}, {700, 675},
+    {x+675, y+675}, {x+660, y+700}, {x+650, y+650}, {x+630, y+650}, {x+600, y+615},
+    {x+600, y+600}, {x+615, y+600}, {x+655, y+640}, {x+655, y+650}};
+    txSetFillColor(riba);
+    txPolygon (riba_rightdown, 12);
+    txSetFillColor(TX_BLACK);
+    txCircle(x+610, y+610, 3);
+
+    //Decor up
+    COLORREF decor = RGB(9, 112, 207);
+    txSetColor(decor, 2);
+
+    txLine(200, y+200, x+220, y+150);
+    txLine(220, y+150, x+250, y+100);
+    txLine(250, y+100, x+280, y+150);
+    txLine(280, y+150, x+300, y+200);
+
+    txLine(300, y+200, x+320, y+150);
+    txLine(320, y+150, x+350, y+100);
+    txLine(350, y+100, x+380, y+150);
+    txLine(380, y+150, x+400, y+200);
+
+    txLine(x+400, y+200, x+420, y+150);
+    txLine(x+420, y+150, x+450, y+100);
+    txLine(x+450, y+100, x+480, y+150);
+    txLine(x+480, y+150, x+500, y+200);
+
+    txLine(x+500, y+200, x+520, y+150);
+    txLine(x+520, y+150, x+550, y+100);
+    txLine(x+550, y+100, x+580, y+150);
+    txLine(x+580, y+150, x+600, y+200);
+
+    //Decor right
+    txLine(x+600, y+200, x+650, y+220);
+    txLine(x+650, y+220, x+700, y+250);
+    txLine(x+700, y+250, x+650, y+280);
+    txLine(x+650, y+280, x+600, y+300);
+
+    txLine(x+600, y+300, x+650, y+320);
+    txLine(x+650, y+320, x+700, y+350);
+    txLine(x+700, y+350, x+650, y+380);
+    txLine(x+650, y+380, x+600, y+400);
+
+    txLine(x+600, y+400, x+650, y+420);
+    txLine(x+650, y+420, x+700, y+450);
+    txLine(x+700, y+450, x+650, y+480);
+    txLine(x+650, y+480, x+600, y+500);
+
+    txLine(x+600, y+500, x+650, y+520);
+    txLine(x+650, y+520, x+700, y+550);
+    txLine(x+700, y+550, x+650, y+580);
+    txLine(x+650, y+580, x+600, y+600);
+
+    //Decor down
+    txLine(x+200, y+600, x+220, y+650);
+    txLine(x+220, y+650, x+250, y+700);
+    txLine(250, y+700, x+280, y+650);
+    txLine(280, y+650, x+300, y+600);
+
+    txLine(300, y+600, x+320, y+650);
+    txLine(320, y+650, x+350, y+700);
+    txLine(350, y+700, x+380, y+650);
+    txLine(380, y+650, x+400, y+600);
+
+    txLine(400, y+600, x+420, y+650);
+    txLine(420, y+650, x+450, y+700);
+    txLine(450, y+700, x+480, y+650);
+    txLine(480, y+650, x+500, y+600);
+
+    txLine(500, y+600, x+520, y+650);
+    txLine(520, y+650, x+550, y+700);
+    txLine(550, y+700, x+580, y+650);
+    txLine(580, y+650, x+600, y+600);
+
+    //Decor left
+    txLine(200, 200, 150, 220);
+    txLine(150, 220, 100, 250);
+    txLine(100, 250, 150, 280);
+    txLine(150, 280, 200, 300);
+
+    txLine(200, 300, 150, 320);
+    txLine(150, 320, 100, 350);
+    txLine(100, 350, 150, 380);
+    txLine(150, 380, 200, 400);
+
+    txLine(200, 400, 150, 420);
+    txLine(150, 420, 100, 450);
+    txLine(100, 450, 150, 480);
+    txLine(150, 480, 200, 500);
+
+    txLine(200, 500, 150, 520);
+    txLine(150, 520, 100, 550);
+    txLine(100, 550, 150, 580);
+    txLine(150, 580, 200, 600);
+
+    //Frame
+
+    txSetFillColor(TX_WHITE);
+    txSetColor(TX_BLACK);
+    txRectangle(300, 700, 500, 750);
+    txSetFillColor(TX_BLACK);
+    txTextOut(310, 710, "‡≥å0‡≥å‡≤¶‡≤æ‡≤∏‡≤ø");
+    txTextOut(310, 720, "‡≥á‡≤ï‡≤ø‡≥å‡≤¶‡≤∞");
+    }
